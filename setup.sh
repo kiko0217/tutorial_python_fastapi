@@ -22,8 +22,12 @@ create_venv(){
     fi
     python -m venv env
 }
+activate_env() {
+    echo activate env
+    source env/bin/activate
+}
 [[ $os_type != "WINDOWS" && $os_type != "LINUX" ]] && exit 1;
 [[ "$VIRTUAL_ENV" == "" ]]; INVENV=$?
 [[ $INVENV == 0 &&  ! -d env ]] && create_venv
-[[ $INVENV == 0 ]] && source env/bin/activate
+[[ $INVENV == 0 ]] && activate_env
 pip install -r requirements.txt
